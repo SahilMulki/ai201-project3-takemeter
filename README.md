@@ -172,43 +172,43 @@ The model I used was dilbert-base-uncased. The training platform I used is Colab
 Evaluated on 30 posts  
 **Baseline Accuracy:** 0.933
 
-| Class | Precision | Recall | F1-Score | Support |
-|-------|-----------|--------|----------|---------|
-| analysis | 0.92 | 1.00 | 0.96 | 11 |
-| hot_take | 1.00 | 0.90 | 0.95 | 10 |
-| reaction | 0.89 | 0.89 | 0.89 | 9 |
-| **accuracy** | | | **0.93** | **30** |
-| macro avg | 0.94 | 0.93 | 0.93 | 30 |
-| weighted avg | 0.94 | 0.93 | 0.93 | 30 |
+| Class        | Precision | Recall | F1-Score | Support |
+| ------------ | --------- | ------ | -------- | ------- |
+| analysis     | 0.92      | 1.00   | 0.96     | 11      |
+| hot_take     | 1.00      | 0.90   | 0.95     | 10      |
+| reaction     | 0.89      | 0.89   | 0.89     | 9       |
+| **accuracy** |           |        | **0.93** | **30**  |
+| macro avg    | 0.94      | 0.93   | 0.93     | 30      |
+| weighted avg | 0.94      | 0.93   | 0.93     | 30      |
 
 ### Fine-tuned Model Performance
 
 **Model Accuracy:** 0.833
 
-| Class | Precision | Recall | F1-Score | Support |
-|-------|-----------|--------|----------|---------|
-| analysis | 1.00 | 0.91 | 0.95 | 11 |
-| hot_take | 0.78 | 0.70 | 0.74 | 10 |
-| reaction | 0.73 | 0.89 | 0.80 | 9 |
-| **accuracy** | | | **0.83** | **30** |
-| macro avg | 0.84 | 0.83 | 0.83 | 30 |
-| weighted avg | 0.84 | 0.83 | 0.83 | 30 |
+| Class        | Precision | Recall | F1-Score | Support |
+| ------------ | --------- | ------ | -------- | ------- |
+| analysis     | 1.00      | 0.91   | 0.95     | 11      |
+| hot_take     | 0.78      | 0.70   | 0.74     | 10      |
+| reaction     | 0.73      | 0.89   | 0.80     | 9       |
+| **accuracy** |           |        | **0.83** | **30**  |
+| macro avg    | 0.84      | 0.83   | 0.83     | 30      |
+| weighted avg | 0.84      | 0.83   | 0.83     | 30      |
 
 ### Confusion Matrix
 
 | True \ Predicted | analysis | hot_take | reaction |
-|------------------|----------|----------|----------|
-| **analysis** | 9 | 1 | 0 |
-| **hot_take** | 4 | 4 | 2 |
-| **reaction** | 2 | 1 | 7 |
+| ---------------- | -------- | -------- | -------- |
+| **analysis**     | 9        | 1        | 0        |
+| **hot_take**     | 4        | 4        | 2        |
+| **reaction**     | 2        | 1        | 7        |
 
 ### Wrong Predictions
 
-| # | Text | True Label | Predicted | Confidence | Analysis |
-|---|------|------------|-----------|------------|----------|
-| 1 | "England have the best squad on paper at this World Cup and they'll still bottle it because they always do. I'd put my house on a quarter-final exit. Some things never change." | hot_take | reaction | 0.77 | The post makes a bold claim based on no evidence. It can't be a reaction because it's not reacting to any specific event that occurred. The model may have interpreted this as a reaction to an England game. |
-| 2 | "Since Saka came back from injury he has 2 goals and 3 assists in 6 games despite the fact he's very obviously still hampered by injuries. Also has 3 goals and 1 assist in 5 World Cup games, for comparison Foden has 4 England goals in 49 games, Bowen has 1 goal in 22 games. I sadly think he's not gonna get back to the level he could have reached/did reach last season pre injuries but he's still a very good player and there's not many wingers better than him." | analysis | hot_take | 0.84 | The post makes a structured argument based on statistics. The model may have read the last sentence and labeled it a hot_take because it thought the claim that Saka will not reach the level of last season wasn't sufficiently supported by the evidence. |
-| 3 | "Van de Ven's head was like a magnet for the ball. Tottenham defended excellently, they were so well drilled and every player put in a shift and happily took on defensive duties. Really impressive when you consider the main complaint with Ange is his team's lack of defensive structure and coaching." | reaction | hot_take | 0.94 | The post is in reaction to a specific game, which is clear in the words "Tottenham defended excellently." The model may have missed that detail and labeled it hot_take. That level of inference might not be there for this model quite yet. |
+| #   | Text                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | True Label | Predicted | Confidence | Analysis                                                                                                                                                                                                                                                    |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | "England have the best squad on paper at this World Cup and they'll still bottle it because they always do. I'd put my house on a quarter-final exit. Some things never change."                                                                                                                                                                                                                                                                                                | hot_take   | reaction  | 0.77       | The post makes a bold claim based on no evidence. It can't be a reaction because it's not reacting to any specific event that occurred. The model may have interpreted this as a reaction to an England game.                                               |
+| 2   | "Since Saka came back from injury he has 2 goals and 3 assists in 6 games despite the fact he's very obviously still hampered by injuries. Also has 3 goals and 1 assist in 5 World Cup games, for comparison Foden has 4 England goals in 49 games, Bowen has 1 goal in 22 games. I sadly think he's not gonna get back to the level he could have reached/did reach last season pre injuries but he's still a very good player and there's not many wingers better than him." | analysis   | hot_take  | 0.84       | The post makes a structured argument based on statistics. The model may have read the last sentence and labeled it a hot_take because it thought the claim that Saka will not reach the level of last season wasn't sufficiently supported by the evidence. |
+| 3   | "Van de Ven's head was like a magnet for the ball. Tottenham defended excellently, they were so well drilled and every player put in a shift and happily took on defensive duties. Really impressive when you consider the main complaint with Ange is his team's lack of defensive structure and coaching."                                                                                                                                                                    | reaction   | hot_take  | 0.94       | The post is in reaction to a specific game, which is clear in the words "Tottenham defended excellently." The model may have missed that detail and labeled it hot_take. That level of inference might not be there for this model quite yet.               |
 
 ### Label Confusion Analysis
 
@@ -216,9 +216,9 @@ Format: [True Label → Predicted Label]
 
 The only pairs with 0 or 1 errors were [analysis → reaction] and [reaction → hot_take]. The most common mistake was [hot_take → analysis].
 
-| Label Boundary | Why It's Hard | Potential Fix |
-|----------------|---------------|---------------|
-| hot_take → analysis | There's no clear line between what is enough/sufficient evidence for an argument to be well supported (analysis) or cherry picked (hot_take) | More training data to better learn the evidence threshold; the model may improve with a larger dataset |
+| Label Boundary      | Why It's Hard                                                                                                                                                                     | Potential Fix                                                                                          |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| hot_take → analysis | There's no clear line between what is enough/sufficient evidence for an argument to be well supported (analysis) or cherry picked (hot_take)                                      | More training data to better learn the evidence threshold; the model may improve with a larger dataset |
 | reaction → hot_take | A reaction has to be in reference to a specific event, but people often react without directly stating the event — many reaction posts only indirectly reference a specific event | More training data and improved contextual inference so the model can detect indirect event references |
 
 ## Sample Classifications
@@ -248,11 +248,11 @@ I intended for the model to be able to capture the nuances of people's soccer ta
 
 ### AI Tool Plan
 
-| Task | Tool | Input | Expected Output | Verification Method |
-|------|------|-------|-----------------|---------------------|
-| Label stress-testing | Claude | Label definitions and edge case descriptions | 10 posts at the boundary between two labels | Classify the posts and adjust label definitions if needed |
-| Annotation Assistance | N/A | — | — | — |
-| Failure analysis | Claude | Examples of posts the trained model got wrong | Patterns and reasons for incorrect labels | Run the model multiple times in different sessions to see if the patterns persist |
+| Task                  | Tool   | Input                                         | Expected Output                             | Verification Method                                                               |
+| --------------------- | ------ | --------------------------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------- |
+| Label stress-testing  | Claude | Label definitions and edge case descriptions  | 10 posts at the boundary between two labels | Classify the posts and adjust label definitions if needed                         |
+| Annotation Assistance | N/A    | —                                             | —                                           | —                                                                                 |
+| Failure analysis      | Claude | Examples of posts the trained model got wrong | Patterns and reasons for incorrect labels   | Run the model multiple times in different sessions to see if the patterns persist |
 
 ### Instances Where I Used AI
 
@@ -263,3 +263,7 @@ I used Claude to help adjust the hyperparameters for the fine tuning. Claude rec
 ## Spec Reflection
 
 I think the spec was very helpful this project in helping me stay organized. This was useful because I completed this project over multiple days so it was nice to have something to look back at and remember what still needs to be done. I do think that the spec was less helpful for this project compared to the previous two because there was no coding, so the spec wasn't needed in order to give context to Claude Code. I generally kept in line with my spec and didn't diverge from it.
+
+## Demo Video Link
+
+https://www.loom.com/share/212b9703146c46bd8eac821bb9b5e2fe
